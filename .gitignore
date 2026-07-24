@@ -1,0 +1,5 @@
+node_modules/
+wordpress-plugin/dist/
+releases/*.zip
+*.tsbuildinfo
+dist/

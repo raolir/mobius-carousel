@@ -1,0 +1,7 @@
+.wp-block-mobius-carousel-carousel .mobius-carousel-editor__placeholder {
+  min-height: 8rem;
+}
+
+.wp-block-mobius-carousel-carousel .mobius-carousel-editor__placeholder p {
+  margin: 0.25rem 0;
+}

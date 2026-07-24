@@ -1,0 +1,29 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "mobius-carousel/carousel",
+  "version": "0.1.0",
+  "title": "Möbius Carousel",
+  "category": "media",
+  "icon": "images-alt2",
+  "description": "Display posts from a category as an interactive Möbius-strip carousel.",
+  "textdomain": "mobius-carousel",
+  "attributes": {
+    "categoryId": {
+      "type": "integer",
+      "default": 0
+    },
+    "visibleCardCount": {
+      "type": "integer",
+      "default": 7
+    },
+    "backgroundColor": {
+      "type": "string",
+      "default": "#667889"
+    }
+  },
+  "supports": {
+    "html": false
+  },
+  "render": "file:./render.php"
+}

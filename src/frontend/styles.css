@@ -1,0 +1,210 @@
+.mobius-carousel-host {
+  width: 100%;
+  height: 100svh;
+  min-width: 0;
+  min-height: 0;
+}
+
+.mobius-carousel {
+  container-name: mobius-carousel;
+  container-type: size;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  color: inherit;
+  font: inherit;
+  background: transparent;
+  isolation: isolate;
+}
+
+.mobius-carousel *,
+.mobius-carousel *::before,
+.mobius-carousel *::after {
+  box-sizing: border-box;
+}
+
+.mobius-carousel__canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.mobius-carousel__selection-info {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  pointer-events: none;
+  text-align: center;
+  user-select: none;
+}
+
+.mobius-carousel__selection-list,
+.mobius-carousel__selection-list > li,
+.mobius-carousel__tag-list,
+.mobius-carousel__tag-list > li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mobius-carousel__selection-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  max-width: 650px;
+  padding-top: clamp(0.75rem, 2cqmin, 1.25rem);
+  border-top: 1px solid color-mix(in srgb, currentColor 15%, transparent);
+  overflow: hidden;
+}
+
+.mobius-carousel__selection-list > li {
+  overflow: hidden;
+}
+
+.mobius-carousel__selection-info h2,
+.mobius-carousel__description {
+  margin: 0;
+}
+
+.mobius-carousel__selection-info h2 {
+  font-family: inherit;
+  font-size: clamp(2rem, 10cqmin, 4rem);
+  font-weight: 850;
+  letter-spacing: -0.075em;
+  line-height: 0.88;
+  text-transform: uppercase;
+  white-space: normal;
+}
+
+.mobius-carousel__selection-accent {
+  color: transparent;
+  -webkit-text-stroke: 1px currentColor;
+}
+
+.mobius-carousel__tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.7rem;
+  max-width: 38rem;
+  justify-content: center;
+  margin-top: clamp(0.7rem, 1.6cqmin, 1rem);
+  color: color-mix(in srgb, currentColor 62%, transparent);
+}
+
+.mobius-carousel__tag-list > li {
+  color: inherit;
+  font-size: clamp(0.78rem, 1.2cqmin, 0.9rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.mobius-carousel__tag-list > li:not(:last-child)::after {
+  content: '/';
+  margin-left: 0.7rem;
+  color: color-mix(in srgb, currentColor 34%, transparent);
+  font-weight: 500;
+}
+
+.mobius-carousel__description {
+  max-width: 38rem;
+  margin-top: 0.85rem;
+  color: color-mix(in srgb, currentColor 68%, transparent);
+  font-family: inherit;
+  font-size: clamp(0.92rem, 1.55cqmin, 1.15rem);
+  line-height: 1.5;
+}
+
+.mobius-carousel__action {
+  pointer-events: auto;
+  display: inline-flex;
+  margin-top: 1.15rem;
+  padding: 0.68rem 1rem;
+  border: 1px solid color-mix(in srgb, currentColor 74%, transparent);
+  border-radius: 999px;
+  color: inherit;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  text-decoration: none;
+  transition:
+    background 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.mobius-carousel__action:where(:hover, :focus-visible) {
+  background: #000000;
+  border-color: #000000;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.mobius-carousel--empty {
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+  text-align: center;
+}
+
+.mobius-carousel--empty p {
+  margin: 0;
+}
+
+@container mobius-carousel (orientation: landscape) {
+  .mobius-carousel__selection-info {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 50%;
+    text-align: left;
+  }
+
+  .mobius-carousel__selection-list {
+    align-items: stretch;
+    width: 100%;
+    max-width: none;
+    padding-top: 0;
+    padding-right: 5%;
+    padding-left: clamp(1rem, 2cqmin, 2rem);
+    border-top: 0;
+    border-left: 1px solid color-mix(in srgb, currentColor 58%, transparent);
+  }
+
+  .mobius-carousel__selection-info h2 {
+    font-size: clamp(2rem, 8cqmin, 6.2rem);
+  }
+
+  .mobius-carousel__tag-list {
+    justify-content: flex-start;
+  }
+
+  .mobius-carousel__description {
+    margin-top: 0.85rem;
+  }
+}
+
+@container mobius-carousel (max-width: 640px) {
+  .mobius-carousel__selection-info h2 {
+    font-size: clamp(2rem, 11cqmin, 3.2rem);
+  }
+
+  .mobius-carousel__description {
+    margin-top: 0.8rem;
+    font-size: 0.92rem;
+    line-height: 1.4;
+  }
+}

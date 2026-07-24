@@ -1,0 +1,4 @@
+node_modules
+wordpress-plugin/dist
+releases
+pnpm-lock.yaml
