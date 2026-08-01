@@ -128,7 +128,7 @@ export function MobiusCarouselCard({
           return
         }
 
-        if (hovered && imageRef.current) {
+        if (imageRef.current) {
           onSelect({ slotIndex, mesh: imageRef.current, item, texture })
         }
       }}

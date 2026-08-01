@@ -40,6 +40,7 @@ interface MobiusCarouselSceneProps {
   items: CarouselItem[]
   visibleCardCount: number
   targetRotationRef: RefObject<number>
+  isDraggingRef: RefObject<boolean>
   onSelectionDisplayChange: (selection: SelectionDisplayState | null) => void
 }
 
@@ -47,6 +48,7 @@ export function MobiusCarouselScene({
   items,
   visibleCardCount,
   targetRotationRef,
+  isDraggingRef,
   onSelectionDisplayChange,
 }: MobiusCarouselSceneProps) {
   const imageUrls = [...new Set(items.flatMap((item) => (item.imageUrl ? [item.imageUrl] : [])))]
@@ -120,7 +122,7 @@ export function MobiusCarouselScene({
     }
 
     if (parallaxRef.current) {
-      const pointerRotationEnabled = selection === null
+      const pointerRotationEnabled = selection === null && !isDraggingRef.current
       const targetRotationX = pointerRotationEnabled
         ? BASE_RIG_ROTATION_X + state.pointer.y * POINTER_ROTATION_X
         : BASE_RIG_ROTATION_X

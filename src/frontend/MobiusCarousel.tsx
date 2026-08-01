@@ -15,16 +15,18 @@ interface MobiusCarouselProps {
 }
 
 export function MobiusCarousel({ items, visibleCardCount, backgroundColor }: MobiusCarouselProps) {
-  const containerRef = useRef<HTMLElement>(null)
+  const canvasRef = useRef<HTMLCanvasElement>(null)
   const [selectionDisplay, setSelectionDisplay] = useState<SelectionDisplayState | null>(null)
-  const targetRotationRef = useCarouselRotation(containerRef, selectionDisplay === null)
+  const { targetRotationRef, isDraggingRef } = useCarouselRotation(
+    canvasRef,
+    items.length > 0 && selectionDisplay === null,
+  )
   const normalizedVisibleCardCount = normalizeVisibleCardCount(visibleCardCount)
   const normalizedBackgroundColor = normalizeCarouselBackgroundColor(backgroundColor)
 
   if (items.length === 0) {
     return (
       <section
-        ref={containerRef}
         className="mobius-carousel mobius-carousel--empty"
         style={{ backgroundColor: normalizedBackgroundColor }}
       >
@@ -34,12 +36,8 @@ export function MobiusCarousel({ items, visibleCardCount, backgroundColor }: Mob
   }
 
   return (
-    <section
-      ref={containerRef}
-      className="mobius-carousel"
-      style={{ backgroundColor: normalizedBackgroundColor }}
-    >
-      <Canvas className="mobius-carousel__canvas">
+    <section className="mobius-carousel" style={{ backgroundColor: normalizedBackgroundColor }}>
+      <Canvas ref={canvasRef} className="mobius-carousel__canvas">
         <color attach="background" args={[normalizedBackgroundColor]} />
         <ResponsiveCarouselCamera />
         <Suspense fallback={null}>
@@ -47,6 +45,7 @@ export function MobiusCarousel({ items, visibleCardCount, backgroundColor }: Mob
             items={items}
             visibleCardCount={normalizedVisibleCardCount}
             targetRotationRef={targetRotationRef}
+            isDraggingRef={isDraggingRef}
             onSelectionDisplayChange={setSelectionDisplay}
           />
         </Suspense>

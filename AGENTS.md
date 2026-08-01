@@ -349,6 +349,10 @@ The public frontend owns:
 - loading behavior;
 - cleanup and disposal.
 
+The carousel supports mouse-wheel rotation and horizontal pointer dragging with touch, pen, and the primary mouse button. Dragging must preserve vertical page scrolling, must not trigger card selection or deselection on release, and must use the existing damped continuous movement without snapping or release momentum.
+
+Pointer interaction state must remain local to each carousel instance. Ignore secondary pointers, and clean up pointer capture when a gesture is cancelled, interaction is disabled, or the carousel unmounts.
+
 Keep Möbius mathematics separate from React component rendering.
 
 Prefer pure functions for converting a carousel parameter and item count into:
